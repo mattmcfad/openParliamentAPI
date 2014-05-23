@@ -1,5 +1,9 @@
-var app = {
 
+var app = {
+	uLleaders :  $('ul.leaders'),
+	uLindex : 0,
+
+	leaders : ["Stephen Harper", "Justin Trudeau", "Thomas Mulcair", "Elizabeth May"],
 	politicians : ['stephen-harper','justin-trudeau','thomas-mulcair','elizabeth-may'],
 	search_limit : '10',
 
@@ -64,12 +68,38 @@ var app = {
 		//To Do.
 
 	},//replaceLinks
+ buildNav: function(){
+
+ 	switch (app.uLindex) {
+ 		case 0: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leaders[app.uLindex]+"<ul class='sub-leaders'><li id=1>" + app.leaders[app.uLindex+1]+"</li><li id=2>" + app.leaders[app.uLindex+2]+"</li><li id=3>" + app.leaders[app.uLindex+3]+"</li></ul></li>");
+ 			break;
+
+ 		case 1: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leaders[app.uLindex]+"<ul class='sub-leaders'><li id=2>" + app.leaders[app.uLindex+1]+"</li><li id=3>" + app.leaders[app.uLindex+2]+"</li><li id=0>" + app.leaders[0]+"</li></ul></li>");
+ 			break;
+ 		case 2: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leaders[app.uLindex]+"<ul class='sub-leaders'><li id=3>" + app.leaders[app.uLindex+1]+"</li><li id=0>" + app.leaders[0]+"</li><li id=1>" + app.leaders[1]+"</li></ul></li>");	
+ 			break;
+ 		case 3: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leaders[app.uLindex]+"<ul class='sub-leaders'><li id=0>" + app.leaders[0]+"</li><li id=1>" + app.leaders[1]+"</li><li id=2>" + app.leaders[2]+"</li></ul></li>");	
+ 			break;
+ 	} 
+
+	app.uLindex++;
+ 	if (app.uLindex >=4) {
+		app.uLindex=0;
+	} //if  
+  }//buildNav
 
 }//ap
 
 
+  //Create Interval to loop through Nav of Party Leaders 
+  
+
+
+
 
 $(document).ready(function(){
+
+	window.setInterval(app.buildNav, 1500);
 
 	$('li').on('click',function(){
 		//each li has an id corresponding to the
