@@ -34,13 +34,14 @@ h4 {
 }
 
 .speaker,
+.bubble,
 .leader {
   float: left;
 }
 
 .speaker,
 .leader {
-  width: 200px;
+  width: 400px;
 }
 
 p {
@@ -65,6 +66,11 @@ ul {
 ul li {
   list-style-type: none;
   font-size: 40px;
+}
+
+#full-name,
+#party-riding {
+  font-size: 25px;
 }
 
 .bubble {

@@ -29,12 +29,12 @@ h4 {
 	font-family: helvetica;
 }
 
-.speaker,.leader {
+.speaker,.bubble,.leader {
 	float: left;
 }
 
 .speaker, .leader {
-	width: 200px;
+	width: 400px;
 
 }
 
@@ -63,6 +63,10 @@ ul li {
 	font-size: 40px;
 }
 
+#full-name,
+#party-riding {
+	font-size: 25px;
+}
 
 .bubble {
 	width: 500px;
