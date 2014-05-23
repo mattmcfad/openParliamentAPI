@@ -1,36 +1,24 @@
 var app = {
 
-	politicians : ['stephen-harper'],
+	politicians : ['stephen-harper','justin-trudeau','thomas-mulcair','elizabeth-may'],
+	search_limit : '10',
 
-	main_url: 'http://api.openparliament.ca/',
+	main_url: 'http://api.openparliament.ca',
 
-	query: function(search,politician,date,limit) {
-
-		console.log("Jess's sanity check");
-		var search_url = app.main_url;
-
-		switch(search){
-			case 'speech' : search_url + 'speeches';
-							break;
-
-			default: app.main_url + 'politicians/stephen-harper/';
-		}
+	query: function(politicians) {
 
 		$.ajax({
-			url: app.main_url + 'speeches/?mentioned_politician=stephen-harper&limit=10&format=json',
+			url: app.buildSearch(politicians),
 			type: 'GET',
 			success: function(response){
 
-				var div = $('.wrapper');
-				
-				for(var i = 0; i < response.objects.length; i++){
+				var div = $('.bubble');
 					
-					var speaker = (response.objects[i].attribution.en);
-					var output = (response.objects[i].content.en);
+					var speaker = (response.objects[0].attribution.en);
+					var output = (response.objects[0].content.en);
 					
-					div.append('<h4>'+speaker+'</h4>');
-					div.append(output);
-				}
+					div.html('<h4>'+speaker+'</h4>');
+					div.html(output);
 			}
 		});//ajax
 	},//query
@@ -38,13 +26,30 @@ var app = {
 	//change all a tags to include api.openparliment.ca
 	replaceLinks: function(text){ 
 
-	}//replaceLinks
+	},//replaceLinks
+
+	buildSearch: function(politician){
+		var url = app.main_url + '/speeches/?mentioned_politician='+politician+'&limit='+app.search_limit+'&format=json';
+		console.log(url);
+		return url;
+	},
+
+	buildAttribution: function(politicianUrl){
+		var url = app.main_url + politicianUrl + '?format=json';
+		return url;
+	}
+
 }//ap
 
 
 
 $(document).ready(function(){
-	app.query()
+	// app.query();
+
+	$('li').on('click',function(){
+		
+		app.query(app.politicians[Number(this.id)]);
+	});
 });
 
 
