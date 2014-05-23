@@ -1,0 +1,43 @@
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.clearfix:after {
+  content: " ";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #16a085;
+}
+
+.wrapper {
+  padding: 25px 15px;
+  background-color: #ecf0f1;
+  width: 500px;
+  margin: 0 auto;
+}
+
+h4 {
+  font-family: helvetica;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
