@@ -1,5 +1,11 @@
-var app = {
 
+var app = {
+	uLleaders :  $('ul.leaders'),
+	uLindex : 0,
+
+
+	leadersNav : ["Stephen Harper", "Justin Trudeau", "Thomas Mulcair", "Elizabeth May"],
+	politicians : ['stephen-harper','justin-trudeau','thomas-mulcair','elizabeth-may'],
 	//array of quotes of leaders.
 	quotes: [null,null,null,null], 
 
@@ -114,15 +120,28 @@ var app = {
 
 
 	},//replaceLinks
+ buildNav: function(){
 
-}//ap
+ 	switch (app.uLindex) {
+ 		case 0: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=1>" + app.leadersNav[app.uLindex+1]+"</li><li id=2>" + app.leadersNav[app.uLindex+2]+"</li><li id=3>" + app.leadersNav[app.uLindex+3]+"</li></ul></li>");
+ 			break;
+
+ 		case 1: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=2>" + app.leadersNav[app.uLindex+1]+"</li><li id=3>" + app.leadersNav[app.uLindex+2]+"</li><li id=0>" + app.leadersNav[0]+"</li></ul></li>");
+ 			break;
+ 		case 2: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=3>" + app.leadersNav[app.uLindex+1]+"</li><li id=0>" + app.leadersNav[0]+"</li><li id=1>" + app.leadersNav[1]+"</li></ul></li>");	
+ 			break;
+ 		case 3: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=0>" + app.leadersNav[0]+"</li><li id=1>" + app.leadersNav[1]+"</li><li id=2>" + app.leadersNav[2]+"</li></ul></li>");	
+ 			break;
+ 	} 
+
+	app.uLindex++;
+ 	if (app.uLindex >=4) {
+		app.uLindex=0;
+	} //if
 
 
-
-$(document).ready(function(){
-
-	//clicking on a Leader's name.
 	$('li').on('click',function(){
+		console.log("werk");
 		//each li has an id corresponding to the leaders array
 		var id = Number(this.id);
 		app.current_id = id;
@@ -136,9 +155,24 @@ $(document).ready(function(){
 			console.log("retrieving cache for: " + app.leaders[id]);
 			app.nextQuote();
 			//recall the cache
-		}	
+		}
 
-	});
+		console.log(app.uLleaders);
+	});  
+  }//buildNav
+
+}//ap
+
+
+  //Create Interval to loop through Nav of Party Leaders 
+  
+
+
+
+
+$(document).ready(function(){
+	window.setInterval(app.buildNav, 1500);
+	//clicking on a Leader's name.
 });
 
 
