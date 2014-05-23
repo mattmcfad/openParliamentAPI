@@ -1,13 +1,16 @@
 var app = {
 
 	//array of quotes of leaders.
-	quotes: [0,0,0,0], 
+	quotes: [null,null,null,null], 
 
+	//Party Leaders
 	leaders : ['stephen-harper','justin-trudeau','thomas-mulcair','elizabeth-may'],
+	
+	//Members of Parliament that mention the leaders
 	mps: {},
 
-
-	search_limit : 5,
+	//Greater than 6 will cause HTTP request errors.
+	search_limit : 6,
 
 	current_id : 0, //which leader
 	quote_id : 0,  //which quote
@@ -124,7 +127,7 @@ $(document).ready(function(){
 		var id = Number(this.id);
 		app.current_id = id;
 		//if the Leader hasn't already been queried
-		if(app.quotes[id] === 0){
+		if(app.quotes[id] === null){
 			console.log("making a query for: " + app.leaders[id]);
 			//query the leader
 			app.query(app.leaders[id],id);
