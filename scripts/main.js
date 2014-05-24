@@ -1,7 +1,9 @@
 
 var app = {
-	uLleaders :  $('ul.leaders'),
+	uLleaders : $('ul.leaders'),
 	uLindex : 0,
+
+	uLmouseover: false,
 
 
 	leadersNav : ["Stephen Harper", "Justin Trudeau", "Thomas Mulcair", "Elizabeth May"],
@@ -54,6 +56,7 @@ var app = {
 		return url;
 	},
 
+
 	//Get profile of the politician who mentioned the leader.
 	//@param mpURL - the url of the leaders profile
 	buildAttribution: function(mpURL){
@@ -75,11 +78,35 @@ var app = {
 		});//ajax
 	},//buildAttribution
 
+
 	//Displays the content and speaker information
 	//increases iteration for the bubble.
 	nextQuote: function(){
 		var bubble  = $('.bubble');
 		var speaker = $('.speaker');
+		var leader = $('.leader');
+
+		var rand = Math.floor(Math.random()*3+1);
+		console.log(app.politicians[app.current_id] + ' numb:' + rand);
+
+		switch (app.current_id) {
+			case 0 :  	leader.find('img').attr('src',('images/harper/'+rand+'.jpg'));
+						break;
+			case 1 : 	if (rand === 3) {
+							leader.find('img').attr('src',('images/trudeau/'+rand+'.PNG'));
+						}else{
+							leader.find('img').attr('src',('images/trudeau/'+rand+'.jpg'));
+						}
+						break;
+			case 2 : 	leader.find('img').attr('src',('images/mulcair/'+rand+'.jpg'));
+						break;
+			case 3 : 	if (rand ===3) {
+							leader.find('img').attr('src',('images/trudeau/'+rand+'.PNG'));
+						}else{
+							leader.find('img').attr('src',('images/trudeau/'+rand+'.jpg'));
+						}
+						break;
+		} 
 		
 		//set content bubble.
 		bubble.html(app.quotes[app.current_id].objects[app.quote_id].content.en);
@@ -107,8 +134,6 @@ var app = {
 			app.quote_id = 0;
 			console.log('reseting quote_id: ' + app.quote_id);
 		}
-
-
 	},//nextQuote
 
 
@@ -118,27 +143,38 @@ var app = {
 		
 		//To Do.
 
-
 	},//replaceLinks
+
+
  buildNav: function(){
 
- 	switch (app.uLindex) {
- 		case 0: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=1>" + app.leadersNav[app.uLindex+1]+"</li><li id=2>" + app.leadersNav[app.uLindex+2]+"</li><li id=3>" + app.leadersNav[app.uLindex+3]+"</li></ul></li>");
- 			break;
-
- 		case 1: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=2>" + app.leadersNav[app.uLindex+1]+"</li><li id=3>" + app.leadersNav[app.uLindex+2]+"</li><li id=0>" + app.leadersNav[0]+"</li></ul></li>");
- 			break;
- 		case 2: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=3>" + app.leadersNav[app.uLindex+1]+"</li><li id=0>" + app.leadersNav[0]+"</li><li id=1>" + app.leadersNav[1]+"</li></ul></li>");	
- 			break;
- 		case 3: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=0>" + app.leadersNav[0]+"</li><li id=1>" + app.leadersNav[1]+"</li><li id=2>" + app.leadersNav[2]+"</li></ul></li>");	
- 			break;
- 	} 
+ 	if (app.uLmouseover === false){
+	 	switch (app.uLindex) {
+	 		case 0: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=1>" + app.leadersNav[app.uLindex+1]+"</li><li id=2>" + app.leadersNav[app.uLindex+2]+"</li><li id=3>" + app.leadersNav[app.uLindex+3]+"</li></ul></li>");
+	 			break;
+	 		case 1: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=2>" + app.leadersNav[app.uLindex+1]+"</li><li id=3>" + app.leadersNav[app.uLindex+2]+"</li><li id=0>" + app.leadersNav[0]+"</li></ul></li>");
+	 			break;
+	 		case 2: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=3>" + app.leadersNav[app.uLindex+1]+"</li><li id=0>" + app.leadersNav[0]+"</li><li id=1>" + app.leadersNav[1]+"</li></ul></li>");	
+	 			break;
+	 		case 3: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=0>" + app.leadersNav[0]+"</li><li id=1>" + app.leadersNav[1]+"</li><li id=2>" + app.leadersNav[2]+"</li></ul></li>");	
+	 			break;
+	 	} 
+ 	}
 
 	app.uLindex++;
  	if (app.uLindex >=4) {
 		app.uLindex=0;
 	} //if
 
+	$('li').on('mouseover', function (){
+		app.uLmouseover=true;
+
+	});
+
+	$('li').on('mouseout', function (){
+		app.uLmouseover=false;
+		
+	});
 
 	$('li').on('click',function(){
 		console.log("werk");
@@ -157,7 +193,6 @@ var app = {
 			//recall the cache
 		}
 
-		console.log(app.uLleaders);
 	});  
   }//buildNav
 
