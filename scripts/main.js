@@ -65,7 +65,7 @@ var app = {
 			url: app.main_url + mpURL + '?format=json',
 			type: 'GET',
 			success: function(response){
-				console.log('setting MP key: ' +mpURL);
+				//console.log('setting MP key: ' +mpURL);
 				app.mps[mpURL] = response; 
 
 				var speaker = $('.speaker');
@@ -82,28 +82,32 @@ var app = {
 	//Displays the content and speaker information
 	//increases iteration for the bubble.
 	nextQuote: function(){
-		var bubble  = $('.bubble');
-		var speaker = $('.speaker');
-		var leader = $('.leader');
+		var bubble  = $('.bubble');	//speach bubble of whats being said
+		var speaker = $('.speaker');//who said it
+		var leader = $('.leader');	//mentioned political leader
 
 		var rand = Math.floor(Math.random()*3+1);
-		console.log(app.politicians[app.current_id] + ' numb:' + rand);
+		console.log("politician: " + app.current_id + ' numb:' + rand);
 
 		switch (app.current_id) {
+			//Harper
 			case 0 :  	leader.find('img').attr('src',('images/harper/'+rand+'.jpg'));
 						break;
+			//Trudeau			
 			case 1 : 	if (rand === 3) {
 							leader.find('img').attr('src',('images/trudeau/'+rand+'.PNG'));
 						}else{
 							leader.find('img').attr('src',('images/trudeau/'+rand+'.jpg'));
 						}
 						break;
+			//Mulcair			
 			case 2 : 	leader.find('img').attr('src',('images/mulcair/'+rand+'.jpg'));
 						break;
-			case 3 : 	if (rand ===3) {
-							leader.find('img').attr('src',('images/trudeau/'+rand+'.PNG'));
+			//Elizabeth May
+			case 3 : 	if (rand ===2) {
+							leader.find('img').attr('src',('images/may/'+rand+'.jpeg'));
 						}else{
-							leader.find('img').attr('src',('images/trudeau/'+rand+'.jpg'));
+							leader.find('img').attr('src',('images/may/'+rand+'.jpg'));
 						}
 						break;
 		} 
@@ -128,11 +132,12 @@ var app = {
 		}
 
 		app.quote_id++;
-		console.log('incrementing quote_id: ' + app.quote_id);
+		//console.log('incrementing quote_id: ' + app.quote_id);
 
+		//reset quote_id when it reaches # of quotes
 		if (app.quote_id === app.search_limit){
 			app.quote_id = 0;
-			console.log('reseting quote_id: ' + app.quote_id);
+			//console.log('reseting quote_id: ' + app.quote_id);
 		}
 	},//nextQuote
 
@@ -146,55 +151,63 @@ var app = {
 	},//replaceLinks
 
 
- buildNav: function(){
+	//run the rotating Nav
+	buildNav: function(){
 
- 	if (app.uLmouseover === false){
-	 	switch (app.uLindex) {
-	 		case 0: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=1>" + app.leadersNav[app.uLindex+1]+"</li><li id=2>" + app.leadersNav[app.uLindex+2]+"</li><li id=3>" + app.leadersNav[app.uLindex+3]+"</li></ul></li>");
-	 			break;
-	 		case 1: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=2>" + app.leadersNav[app.uLindex+1]+"</li><li id=3>" + app.leadersNav[app.uLindex+2]+"</li><li id=0>" + app.leadersNav[0]+"</li></ul></li>");
-	 			break;
-	 		case 2: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=3>" + app.leadersNav[app.uLindex+1]+"</li><li id=0>" + app.leadersNav[0]+"</li><li id=1>" + app.leadersNav[1]+"</li></ul></li>");	
-	 			break;
-	 		case 3: app.uLleaders.html("<li id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"<ul class='sub-leadersNav'><li id=0>" + app.leadersNav[0]+"</li><li id=1>" + app.leadersNav[1]+"</li><li id=2>" + app.leadersNav[2]+"</li></ul></li>");	
-	 			break;
-	 	} 
- 	}
+		//append the sub menu on mouseOver
+	 	if (app.uLmouseover === false){
+		 	switch (app.uLindex) {
+		 		case 0: app.uLleaders.html("<li class='first' ><a href='#' id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"</a><ul class='sub-leadersNav'><li ><a href='#' id=1>" + app.leadersNav[app.uLindex+1]+"</a></li><li ><a href='#' id=2>" + app.leadersNav[app.uLindex+2]+"</a></li><li ><a href='#' id=3>" + app.leadersNav[app.uLindex+3]+"</a></li></ul></li>");
+		 			break;
+		 		case 1: app.uLleaders.html("<li class='first' ><a href='#' id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"</a><ul class='sub-leadersNav'><li ><a href='#' id=2>" + app.leadersNav[app.uLindex+1]+"</a></li><li ><a href='#' id=3>" + app.leadersNav[app.uLindex+2]+"</a></li><li ><a href='#' id=0>" + app.leadersNav[0]+"</a></li></ul></li>");
+		 			break;
+		 		case 2: app.uLleaders.html("<li class='first' ><a href='#' id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"</a><ul class='sub-leadersNav'><li ><a href='#' id=3>" + app.leadersNav[app.uLindex+1]+"</a></li><li ><a href='#' id=0>" + app.leadersNav[0]+"</a></li><li ><a href='#' id=1>" + app.leadersNav[1]+"</a></li></ul></li>");	
+		 			break;
+		 		case 3: app.uLleaders.html("<li class='first' ><a href='#' id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"</a><ul class='sub-leadersNav'><li ><a href='#' id=0>" + app.leadersNav[0]+"</a></li><li ><a href='#' id=1>" + app.leadersNav[1]+"</a></li><li ><a href='#' id=2>" + app.leadersNav[2]+"</a></li></ul></li>");	
+		 			break;
+		 	} 
+	 	}
 
-	app.uLindex++;
- 	if (app.uLindex >=4) {
-		app.uLindex=0;
-	} //if
+	 	//increment index 
+		app.uLindex++;
+	 	if (app.uLindex >=4) {
+	 		//
+			app.uLindex=0;
+		} //if
 
-	$('li').on('mouseover', function (){
-		app.uLmouseover=true;
+		//if mouseover don't increment index
+		$('li').on('mouseover', function (){
+			app.uLmouseover=true;
+		});
 
-	});
+		//on mouseout, go back to rotating nav
+		$('li').on('mouseout', function (){
+			app.uLmouseover=false;
+		});
 
-	$('li').on('mouseout', function (){
-		app.uLmouseover=false;
-		
-	});
 
-	$('li').on('click',function(){
-		console.log("werk");
-		//each li has an id corresponding to the leaders array
-		var id = Number(this.id);
-		app.current_id = id;
-		//if the Leader hasn't already been queried
-		if(app.quotes[id] === null){
-			console.log("making a query for: " + app.leaders[id]);
-			//query the leader
-			app.query(app.leaders[id],id);
-		}
-		else {
-			console.log("retrieving cache for: " + app.leaders[id]);
-			app.nextQuote();
-			//recall the cache
-		}
+		//on clicking one of the political leaders.
+		$('ul li:first-child ul li a, ul li:first-child a').on('click',function(e){
+			e.preventDefault();
 
-	});  
-  }//buildNav
+			console.log("clicked on " + app.leaders[Number(this.id)]);
+			//each li has an id corresponding to the leaders array
+			var id = Number(this.id);
+			app.current_id = id;
+			//if the Leader hasn't already been queried
+			if(app.quotes[id] === null){
+				console.log("making a query for: " + app.leaders[id]);
+				//query the leader
+				app.query(app.leaders[id],id);
+			}
+			else {
+				console.log("retrieving cache for: " + app.leaders[id]);
+				app.nextQuote();
+				//recall the cache
+			}
+
+		});  
+	 }//buildNav
 
 }//ap
 
@@ -202,11 +215,9 @@ var app = {
   //Create Interval to loop through Nav of Party Leaders 
   
 
-
-
-
 $(document).ready(function(){
 	window.setInterval(app.buildNav, 1500);
+	//window.setTimeout(app.buildNav, 1500);
 	//clicking on a Leader's name.
 });
 
