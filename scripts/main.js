@@ -206,7 +206,13 @@ var app = {
 				//recall the cache
 			}
 
-		});  
+		});//on click
+
+		$('button#next-quote').on('click', function(e){
+			e.preventDefault();
+			console.log("test");
+			app.nextQuote();
+		});
 	 }//buildNav
 
 }//ap
