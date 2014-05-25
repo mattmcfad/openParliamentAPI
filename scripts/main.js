@@ -1,12 +1,17 @@
 
 var app = {
-	uLleaders : $('ul.leaders'),
-	uLindex : 0,
 
+	//<ul> containing cycling list of leaders
+	uLleaders : $('ul.leaders'),
+	//position in unordered cycling list of leaders
+	uLindex : 0,
+	//test if leaders drop down is being mouse overed
 	uLmouseover: false,
 
 
+	//whats being displayed to ul List
 	leadersNav : ["Stephen Harper", "Justin Trudeau", "Thomas Mulcair", "Elizabeth May"],
+	//used for search query
 	politicians : ['stephen-harper','justin-trudeau','thomas-mulcair','elizabeth-may'],
 	//array of quotes of leaders.
 	quotes: [null,null,null,null], 
@@ -26,9 +31,10 @@ var app = {
 	main_url: 'http://api.openparliament.ca',
 
 	//First Ajax query for content about the mentioned politician
-	//@param politician- mentioned politician
+	//@param politician - mentioned politician
+	//@param id - represents which political leader
 	query: function(politician,id) {
-
+		console.log("Ajax query for speeches mentioning: " + politician);
 		$.ajax({
 			url: app.buildSearch(politician),
 			type: 'GET',
@@ -48,11 +54,11 @@ var app = {
 	},//query
 
 
-	//build the JSON URL for the mentioned politician.
-	//@param - mentioned politician
+	//build the JSON URL for the mentioned politician / leader.
+	//@param - mentioned politicial Leader 
 	buildSearch: function(politician){
 		var url = app.main_url + '/speeches/?mentioned_politician='+politician+'&limit='+app.search_limit+'&format=json';
-		console.log(url);
+		console.log("Building search URL for " + politician + " :" +url);
 		return url;
 	},
 
@@ -60,7 +66,7 @@ var app = {
 	//Get profile of the politician who mentioned the leader.
 	//@param mpURL - the url of the leaders profile
 	buildAttribution: function(mpURL){
-		console.log("getting: "+app.main_url + mpURL + '?format=json');
+		console.log("Ajax query for MP profile: "+app.main_url + mpURL + '?format=json');
 		$.ajax({
 			url: app.main_url + mpURL + '?format=json',
 			type: 'GET',
@@ -82,35 +88,65 @@ var app = {
 	//Displays the content and speaker information
 	//increases iteration for the bubble.
 	nextQuote: function(){
-		var bubble  = $('.bubble');	//speach bubble of whats being said
+		var bubble  = $('.quote-text');	//speach bubble of whats being said
 		var speaker = $('.speaker');//who said it
-		var leader = $('.leader');	//mentioned political leader
+		
 
-		var rand = Math.floor(Math.random()*3+1);
-		console.log("politician: " + app.current_id + ' numb:' + rand);
+		//change background based on which leader is selected.
+		var bg = $('.body-wrapper');
 
 		switch (app.current_id) {
 			//Harper
-			case 0 :  	leader.find('img').attr('src',('images/harper/'+rand+'.jpg'));
-						break;
-			//Trudeau			
-			case 1 : 	if (rand === 3) {
-							leader.find('img').attr('src',('images/trudeau/'+rand+'.PNG'));
-						}else{
-							leader.find('img').attr('src',('images/trudeau/'+rand+'.jpg'));
-						}
-						break;
-			//Mulcair			
-			case 2 : 	leader.find('img').attr('src',('images/mulcair/'+rand+'.jpg'));
-						break;
-			//Elizabeth May
-			case 3 : 	if (rand ===2) {
-							leader.find('img').attr('src',('images/may/'+rand+'.jpeg'));
-						}else{
-							leader.find('img').attr('src',('images/may/'+rand+'.jpg'));
-						}
-						break;
-		} 
+			case 0: 
+					bg.addClass('bg-harper');
+					bg.removeClass('bg-trudeau bg-mulcair bg-may').fadeIn();
+					break;
+			//Trudeau
+			case 1: 
+					bg.addClass('bg-trudeau');
+					bg.removeClass('bg-harper bg-mulcair bg-may');
+					break;
+			//Mulcair
+			case 2: 
+					bg.addClass('bg-mulcair');
+					bg.removeClass('bg-trudeau bg-harper bg-may');
+					break;
+			//May
+			case 3: 
+					bg.addClass('bg-may');
+					bg.removeClass('bg-trudeau bg-mulcair bg-harper');
+					break;
+
+		}
+
+
+		// var leader = $('.leader');	//mentioned political leader
+
+		// var rand = Math.floor(Math.random()*3+1);
+		// console.log("politician: " + app.current_id + ' numb:' + rand);
+
+		// switch (app.current_id) {
+		// 	//Harper
+		// 	case 0 :  	leader.find('img').attr('src',('images/harper/'+rand+'.jpg'));
+		// 				break;
+		// 	//Trudeau			
+		// 	case 1 : 	if (rand === 3) {
+		// 					leader.find('img').attr('src',('images/trudeau/'+rand+'.PNG'));
+		// 				}else{
+		// 					leader.find('img').attr('src',('images/trudeau/'+rand+'.jpg'));
+		// 				}
+		// 				break;
+		// 	//Mulcair			
+		// 	case 2 : 	leader.find('img').attr('src',('images/mulcair/'+rand+'.jpg'));
+		// 				break;
+		// 	//Elizabeth May
+		// 	case 3 : 	if (rand ===2) {
+		// 					leader.find('img').attr('src',('images/may/'+rand+'.jpeg'));
+		// 				}else{
+		// 					leader.find('img').attr('src',('images/may/'+rand+'.jpg'));
+		// 				}
+		// 				break;
+		// } 
 		
 		//set content bubble.
 		bubble.html(app.quotes[app.current_id].objects[app.quote_id].content.en);
@@ -210,7 +246,6 @@ var app = {
 
 		$('button#next-quote').on('click', function(e){
 			e.preventDefault();
-			console.log("test");
 			app.nextQuote();
 		});
 	 }//buildNav

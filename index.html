@@ -3,46 +3,55 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Open Parliament API</title>
-		<link rel="stylesheet" href="styles/style.scss">
+		<link rel="stylesheet" href="styles/style.css">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-		<div class="wrapper clearfix">
-			<header>
-				<h1>Shit MP's say about</h1>
-				<ul class="leaders">
-					<!-- <li id='0'>Stephen Harper</li>
-					<li id='1'>Justin Trudeau</li>
-					<li id='2'>Tom Mulcair</li>
-					<li id='3'>Elizabeth May</li> -->
-				</ul>
-			</header>
-			<div class="next-button">
-				<button id="next-quote"></button>
-			</div>
-			<div class="speach-bubbles">
-				<div class="speaker">
-
-					<img src="" alt="">
-					<ul>
-						<li id="full-name"></li>
-						<li id="party-riding"></li>
-					</ul>
-				</div>
+		<div class="body-wrapper">
 			
-				<div class="bubble"></div>
+		
+			<div class="wrapper clearfix">
 
-				<div class="leader">
-					<img src="" alt="">
-				</div>
-				
-				
-			</div>
+				<header>
+					<h1>Shit MP's say about</h1>
+					<ul class="leaders">
+						<!-- <li id='0'>Stephen Harper</li>
+						<li id='1'>Justin Trudeau</li>
+						<li id='2'>Tom Mulcair</li>
+						<li id='3'>Elizabeth May</li> -->
+					</ul>
+				</header>
 
 
-		</div><!-- wrapper clearfix -->
+				<div class="quote-box clearfix">
+					
+					<div class="speaker">
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+						<img src="" alt="">
+						<ul>
+							<li id="full-name"></li>
+							<li id="party-riding"></li>
+						</ul>
+					</div> <!-- speaker -->
+
+					<div class="quotes">
+						<div class="quote-text">
+						</div>
+						<div class="next-button">
+							<button id="next-quote">
+								Next
+							</button>
+						</div> <!-- next button -->
+					</div><!-- quotes -->
+				</div><!-- quote-box -->
+
+
+
+
+			</div><!-- wrapper clearfix -->
+		</div><!-- body-wrapper -->
+
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="scripts/main.js"></script>
 	</body>
 </html>
