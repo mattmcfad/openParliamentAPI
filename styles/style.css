@@ -178,6 +178,7 @@ ul.leaders li ul li a#blue {
 
 .quote-box #full-name {
   font-size: 25px;
+  font: 25px 'Oswald';
 }
 
 .quote-box .speaker,

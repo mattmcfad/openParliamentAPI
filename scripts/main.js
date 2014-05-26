@@ -138,7 +138,9 @@ var app = {
 		var outputText = app.quotes[app.current_id].objects[app.quote_id].content.en
 		//set quote to the quote-box
 		//replace href so points to api's site
-		bubble.html(outputText.replace('href=\"','href="http://api.openparliament.ca'));
+		var replaceLink = 'href=\"';
+		var re = new RegExp(replaceLink, 'g');
+		bubble.html(outputText.replace(re,'href="http://api.openparliament.ca'));
 
 		//get quotes for specific leader
 		var quotes = app.quotes[app.current_id];
@@ -181,15 +183,6 @@ var app = {
 		}
 	
 	},//nextQuote
-
-
-	//change all a tags to include api.openparliment.ca
-	//@param text - Anchor Tag that needs to be altered.
-	replaceLinks: function(text){ 
-		
-		//To Do.
-
-	},//replaceLinks
 
 
 	//run the rotating Nav
