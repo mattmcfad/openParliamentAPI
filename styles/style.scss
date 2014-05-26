@@ -28,7 +28,7 @@ $header-color: #ffffff;
 }
 
 html {
-  background: black;
+  background: #b0b0b0;
 }
 
 .wrapper {
@@ -62,16 +62,24 @@ a {
 
   &:hover,&:focus {
     .blue {
-      color: $conservative-blue;
+      color: $header-color;
+      
+      border-bottom: 4px solid $conservative-blue;
     }
     .red {
       color: $liberal-red;
+      color: $header-color;
+      border-bottom: 4px solid $liberal-red;
     }
     .orange {
       color: $ndp-orange;
+      color: $header-color;
+      border-bottom: 4px solid $ndp-orange;
     }
     .green {
       color: $greenparty-green;
+      color: $header-color;
+      border-bottom: 4px solid $greenparty-green;
     }
 
   }
@@ -179,10 +187,6 @@ ul.leaders li ul li a#blue {
 }
 
 
-#full-name,
-#party-riding {
-	font-size: 25px;
-}
 
 
 /*********************************************************************************
@@ -195,6 +199,7 @@ ul.leaders li ul li a#blue {
   border-top: 10px solid #b0b0b0;
   border-radius: 5px;
   padding: 15px;
+  height: 420px;
   width: 500px;
   box-shadow: 2px 2px 5px grey;
   // height: 500px;
@@ -203,42 +208,47 @@ ul.leaders li ul li a#blue {
     float: left;
   }
 
-  .speaker {
+
+  #full-name{
+    font-size: 25px;
+  }
+
+  .speaker, .speaker img, .speaker #full-name {
     width: 152px;
     margin-right: 15px;
+  }
+
+  .speaker img {
+    margin-top: 5px;
   }
 
   .quotes{
     width: 288px;
   }
+
 }
+
 
 
 .quote-text {
-  height: 300px;
+  height: 340px;
   overflow: scroll;
 }
 
-
-
-
-
-/*********************************************************************************
- *******************		     next-bubble: 	   			**********************
- *********************************************************************************/
-
-.next-button{
-
-	width: 100%;
+.buttons{
+  height: 70px;
+  width: 100%;
 }
 
 button#next-quote {
-	float: right;
+  float: right;
+  vertical-align:bottom;
   display: block;
-	margin: 20px auto;
-	width: 50%;
+  margin: 20px auto;
+  height: 25px;
+  width: 50%;
   padding: 5px 0;
-	font: 16px helvetica;
+  font: 16px helvetica;
 
 }
 

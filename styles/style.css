@@ -20,7 +20,7 @@
 }
 
 html {
-  background: black;
+  background: #b0b0b0;
 }
 
 .wrapper {
@@ -48,22 +48,29 @@ a:active {
 
 a:hover .blue,
 a:focus .blue {
-  color: #000a86;
+  color: white;
+  border-bottom: 4px solid #000a86;
 }
 
 a:hover .red,
 a:focus .red {
   color: #a70000;
+  color: white;
+  border-bottom: 4px solid #a70000;
 }
 
 a:hover .orange,
 a:focus .orange {
   color: #f58220;
+  color: white;
+  border-bottom: 4px solid #f58220;
 }
 
 a:hover .green,
 a:focus .green {
   color: #339933;
+  color: white;
+  border-bottom: 4px solid #339933;
 }
 
 h4 {
@@ -148,11 +155,6 @@ ul.leaders li ul li a#blue {
   color: #000a86;
 }
 
-#full-name,
-#party-riding {
-  font-size: 25px;
-}
-
 /*********************************************************************************
  *******************         Quote-box:           **********************
  *********************************************************************************/
@@ -163,6 +165,7 @@ ul.leaders li ul li a#blue {
   border-top: 10px solid #b0b0b0;
   border-radius: 5px;
   padding: 15px;
+  height: 420px;
   width: 500px;
   -webkit-box-shadow: 2px 2px 5px grey;
   box-shadow: 2px 2px 5px grey;
@@ -173,9 +176,19 @@ ul.leaders li ul li a#blue {
   float: left;
 }
 
-.quote-box .speaker {
+.quote-box #full-name {
+  font-size: 25px;
+}
+
+.quote-box .speaker,
+.quote-box .speaker img,
+.quote-box .speaker #full-name {
   width: 152px;
   margin-right: 15px;
+}
+
+.quote-box .speaker img {
+  margin-top: 5px;
 }
 
 .quote-box .quotes {
@@ -183,22 +196,21 @@ ul.leaders li ul li a#blue {
 }
 
 .quote-text {
-  height: 300px;
+  height: 340px;
   overflow: scroll;
 }
 
-/*********************************************************************************
- *******************		     next-bubble: 	   			**********************
- *********************************************************************************/
-
-.next-button {
+.buttons {
+  height: 70px;
   width: 100%;
 }
 
 button#next-quote {
   float: right;
+  vertical-align: bottom;
   display: block;
   margin: 20px auto;
+  height: 25px;
   width: 50%;
   padding: 5px 0;
   font: 16px helvetica;
