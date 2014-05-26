@@ -34,6 +34,7 @@ var app = {
 	//@param politician - mentioned politician
 	//@param id - represents which political leader
 	query: function(politician,id) {
+		$('.quote-box').show();
 		console.log("Ajax query for speeches mentioning: " + politician);
 		$.ajax({
 			url: app.buildSearch(politician),
@@ -118,35 +119,6 @@ var app = {
 					break;
 
 		}
-
-
-		// var leader = $('.leader');	//mentioned political leader
-
-		// var rand = Math.floor(Math.random()*3+1);
-		// console.log("politician: " + app.current_id + ' numb:' + rand);
-
-		// switch (app.current_id) {
-		// 	//Harper
-		// 	case 0 :  	leader.find('img').attr('src',('images/harper/'+rand+'.jpg'));
-		// 				break;
-		// 	//Trudeau			
-		// 	case 1 : 	if (rand === 3) {
-		// 					leader.find('img').attr('src',('images/trudeau/'+rand+'.PNG'));
-		// 				}else{
-		// 					leader.find('img').attr('src',('images/trudeau/'+rand+'.jpg'));
-		// 				}
-		// 				break;
-		// 	//Mulcair			
-		// 	case 2 : 	leader.find('img').attr('src',('images/mulcair/'+rand+'.jpg'));
-		// 				break;
-		// 	//Elizabeth May
-		// 	case 3 : 	if (rand ===2) {
-		// 					leader.find('img').attr('src',('images/may/'+rand+'.jpeg'));
-		// 				}else{
-		// 					leader.find('img').attr('src',('images/may/'+rand+'.jpg'));
-		// 				}
-		// 				break;
-		// } 
 		
 		//set content bubble.
 		bubble.html(app.quotes[app.current_id].objects[app.quote_id].content.en);
@@ -257,6 +229,8 @@ var app = {
   
 
 $(document).ready(function(){
+
+	$('.quote-box').hide();
 	window.setInterval(app.buildNav, 1500);
 	//window.setTimeout(app.buildNav, 1500);
 	//clicking on a Leader's name.
