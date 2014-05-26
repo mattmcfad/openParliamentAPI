@@ -224,14 +224,14 @@ button#next-quote {
   background-position: right center;
   -webkit-background-size: cover;
   background-size: cover;
-  min-height: 1000px;
+  height: 100vh;
 }
 
 .bg-harper,
 .bg-trudeau,
 .bg-mulcair,
 .bg-may {
-  height: 100%;
+  min-height: 100vh;
 }
 
 .bg-harper {

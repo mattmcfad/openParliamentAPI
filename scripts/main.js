@@ -48,6 +48,7 @@ var app = {
 				//reset quote
 				app.quote_id = 0;
 
+				//assign a quote of the leader
 				app.nextQuote();
 					
 			}
@@ -80,24 +81,19 @@ var app = {
 				var speaker = $('.speaker');
 
 
-			speaker.find('img#mp-avatar').attr('src',app.main_url+app.mps[mpURL].image);
-			speaker.find('#full-name').text(app.mps[mpURL].name);
-			var party = app.mps[mpURL].memberships[0].party.short_name.en;
-			var logo = speaker.find('img#partylogo');
-			switch (party) {
-				case 'Conservative' : logo.attr('src',
-					'images/logos/conservative-logo.jpg'); break;
-				case 'Liberal' : logo.attr('src',
-					'images/logos/liberal-logo.jpg');break;
-				case 'NDP' : logo.attr('src',
-					'images/logos/ndp-logo.jpg');break;
-				case 'Green' : logo.attr('src',
-					'images/logos/green-logo.jpg');break;
-			}
-			// 
+				speaker.find('img#mp-avatar').attr('src',app.main_url+app.mps[mpURL].image);
+				speaker.find('#full-name').text(app.mps[mpURL].name);
+				var party = app.mps[mpURL].memberships[0].party.short_name.en;
+				var logo = speaker.find('img#partylogo');
+				//asign logo;
+				switch (party) {
+					case 'Conservative' : logo.attr('src','images/logos/conservative-logo.jpg'); break;
+					case 'Liberal' : logo.attr('src','images/logos/liberal-logo.jpg');break;
+					case 'NDP' : logo.attr('src','images/logos/ndp-logo.jpg');break;
+					case 'Green' : logo.attr('src','images/logos/green-logo.jpg');break;
+				} 
 
-
-			}
+			}//success
 
 		});//ajax
 	},//buildAttribution
@@ -106,15 +102,6 @@ var app = {
 	//Displays the content and speaker information
 	//increases iteration for the bubble.
 	nextQuote: function(){
-
-
-		//set content bubble.
-		var outputText = app.quotes[app.current_id].objects[app.quote_id].content.en
-
-
-		var bubble  = $('.quote-text');	//speach bubble of whats being said
-		var speaker = $('.speaker');//who said it
-		
 
 		//change background based on which leader is selected.
 		var bg = $('.body-wrapper');
@@ -142,9 +129,16 @@ var app = {
 					break;
 
 		}
+
+
+		var bubble  = $('.quote-text');	//speach bubble of whats being said
+		var speaker = $('.speaker');//who said it
 		
+		//set content bubble.
+		var outputText = app.quotes[app.current_id].objects[app.quote_id].content.en
 		//set quote to the quote-box
-		bubble.html(outputText);
+		//replace href so points to api's site
+		bubble.html(outputText.replace('href=\"','href="http://api.openparliament.ca'));
 
 		//get quotes for specific leader
 		var quotes = app.quotes[app.current_id];
@@ -272,7 +266,7 @@ $(document).ready(function(){
 	$('.quote-box').hide();
 	window.setInterval(app.buildNav, 1500);
 	//window.setTimeout(app.buildNav, 1500);
-	//clicking on a Leader's name.
+	
 });
 
 
