@@ -177,8 +177,8 @@ ul.leaders li ul li a#blue {
 }
 
 .quote-box #full-name {
-  font-size: 25px;
-  font: 25px 'Oswald';
+  font: 22px 'Oswald';
+  text-align: center;
 }
 
 .quote-box .speaker,
@@ -213,8 +213,19 @@ button#next-quote {
   margin: 20px auto;
   height: 25px;
   width: 50%;
-  padding: 5px 0;
-  font: 16px helvetica;
+  color: #ffffff;
+  border-radius: 2px;
+  border-color: #DA3333;
+  background-color: #C11A1A;
+  font: 14px 'helvetica';
+}
+
+button#next-quote:hover {
+  background: #F44D4D;
+}
+
+button#next-quote:focus {
+  outline: none;
 }
 
 /*********************************************************************************
