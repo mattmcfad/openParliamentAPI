@@ -7,9 +7,8 @@ var app = {
 	uLindex : 0,
 	//test if leaders drop down is being mouse overed
 	uLmouseover: false,
-
+	//text in english or french, default english.
 	enFrancais: false,
-
 
 	//whats being displayed to ul List
 	leadersNav : ["Stephen Harper", "Justin Trudeau", "Thomas Mulcair", "Elizabeth May"],
@@ -24,6 +23,9 @@ var app = {
 	//Members of Parliament that mention the leaders
 	mps: {},
 
+	//Counting Ajax Calls
+	ajaxCalls: 0,
+
 	//Greater than 6 will cause HTTP request errors.
 	search_limit : 6,
 
@@ -37,7 +39,8 @@ var app = {
 	//@param id - represents which political leader
 	query: function(politician,id) {
 		$('.quote-box').show();
-		// console.log("Ajax query for speeches mentioning: " + politician);
+		console.log("Ajax query for speeches mentioning: " + politician);
+		app.ajaxCalls++;
 		$.ajax({
 			url: app.buildSearch(politician),
 			type: 'GET',
@@ -71,18 +74,19 @@ var app = {
 	//@param mpURL - the url of the leaders profile
 	buildAttribution: function(mpURL){
 		$('footer').show();
-		// console.log("Ajax query for MP profile: "+app.main_url + mpURL + '?format=json');
+		
+		app.ajaxCalls++;
+		console.log("Ajax query for MP profile: "+app.main_url + mpURL + '?format=json');
+		
 		$.ajax({
 			url: app.main_url + mpURL + '?format=json',
 			type: 'GET',
 			success: function(response){
-				//console.log('setting MP key: ' +mpURL);
 				// console.log("pre build attribution for " + mpURL + ' val:' + app.mps[mpURL]);
 				app.mps[mpURL] = response;
 				// console.log("built attribution for " + mpURL + ' val:' + app.mps[mpURL]);  
 
 				var speaker = $('.speaker');
-
 
 				speaker.find('img#mp-avatar').attr('src',app.main_url+app.mps[mpURL].image);
 				speaker.find('#full-name').text(app.mps[mpURL].name);
@@ -106,32 +110,20 @@ var app = {
 	//increases iteration for the bubble.
 	nextQuote: function(){
 
-		//change background based on which leader is selected.
-		var bg = $('.body-wrapper');
+		console.log("Current Ajax calls: " + app.ajaxCalls);
 
-		switch (app.current_id) {
-			//Harper
-			case 0: 
-					bg.addClass('bg-harper');
-					bg.removeClass('bg-trudeau bg-mulcair bg-may').fadeIn();
-					break;
-			//Trudeau
-			case 1: 
-					bg.addClass('bg-trudeau');
-					bg.removeClass('bg-harper bg-mulcair bg-may');
-					break;
-			//Mulcair
-			case 2: 
-					bg.addClass('bg-mulcair');
-					bg.removeClass('bg-trudeau bg-harper bg-may');
-					break;
-			//May
-			case 3: 
-					bg.addClass('bg-may');
-					bg.removeClass('bg-trudeau bg-mulcair bg-harper');
-					break;
+		//go to next quote
+		app.quote_id++;
 
+		// console.log('incrementing quote_id: ' + app.quote_id);
+
+		//reset quote_id when it reaches # of quotes
+		if (app.quote_id === app.search_limit){
+			app.quote_id = 0;
+			console.log('reseting quote_id: ' + app.quote_id);
 		}
+
+		// console.log("Just entered next, curr_id=: " + app.current_id + " quote_id: " + app.quote_id);
 
 
 		var bubble  = $('.quote-text');	//speach bubble of whats being said
@@ -139,15 +131,15 @@ var app = {
 		
 		var outputText = '';
 
-		//set content bubble.
+		//decide if text is french or english
 		if (app.enFrancais === true){
-			// console.log("french");
+			//set text to french
 			outputText = app.quotes[app.current_id].objects[app.quote_id].content.fr;
 		}
-		else {
-		outputText = app.quotes[app.current_id].objects[app.quote_id].content.en;
+		else {//set text to english
+			outputText = app.quotes[app.current_id].objects[app.quote_id].content.en;
 		}
-		//set quote to the quote-box
+		
 		//replace href so points to api's site
 		var replaceLink = 'href=\"';
 		var re = new RegExp(replaceLink, 'g');
@@ -160,7 +152,7 @@ var app = {
 		
 		//if the MP isn't cached
 		if (app.mps[mpURL] === undefined){
-			// console.log("undefined politician: " + app.mps[mpURL] + ' name:' + mpURL);
+			//console.log("undefined politician: " + app.mps[mpURL] + ' name:' + mpURL);
 			app.buildAttribution(mpURL);
 		}
 		//get cache and set the speaker.
@@ -171,28 +163,15 @@ var app = {
 			var party = app.mps[mpURL].memberships[0].party.short_name.en;
 			var logo = speaker.find('img#partylogo');
 			switch (party) {
-				case 'Conservative' : logo.attr('src',
-					'images/logos/conservative-logo.png'); break;
-				case 'Liberal' : logo.attr('src',
-					'images/logos/liberal-logo.png');;break;
-				case 'NDP' : logo.attr('src',
-					'images/logos/ndp-logo.png');;break;
-				case 'Green' : logo.attr('src',
-					'images/logos/green-logo.png');;break;
+				case 'Conservative' : logo.attr('src','images/logos/conservative-logo.png'); break;
+				case 'Liberal' : logo.attr('src','images/logos/liberal-logo.png');break;
+				case 'NDP' : logo.attr('src','images/logos/ndp-logo.png');break;
+				case 'Green' : logo.attr('src','images/logos/green-logo.png');break;
 			}
 			// 
-
 		}
 
-		//go to next quote
-		app.quote_id++;
-		//console.log('incrementing quote_id: ' + app.quote_id);
-
-		//reset quote_id when it reaches # of quotes
-		if (app.quote_id === app.search_limit){
-			app.quote_id = 0;
-			console.log('reseting quote_id: ' + app.quote_id);
-		}
+	
 	
 	},//nextQuote
 
@@ -203,6 +182,8 @@ var app = {
 
 
 		var bubble = $('.quote-text');
+
+		console.log("Hit Bilingual Button, quote id: " + app.quote_id);
 
 		//get content bubble.
 		var outputText = app.quotes[app.current_id].objects[app.quote_id].content;
@@ -272,44 +253,84 @@ var app = {
 			//each li has an id corresponding to the leaders array
 			var id = Number(this.id);
 			app.current_id = id;
+
+			//change background based on which leader is selected.
+			var bg = $('.body-wrapper');
+			
+			switch (app.current_id) {
+				//Harper
+				case 0: 
+						bg.addClass('bg-harper');
+						bg.removeClass('bg-trudeau bg-mulcair bg-may').fadeIn();
+						break;
+				//Trudeau
+				case 1: 
+						bg.addClass('bg-trudeau');
+						bg.removeClass('bg-harper bg-mulcair bg-may');
+						break;
+				//Mulcair
+				case 2: 
+						bg.addClass('bg-mulcair');
+						bg.removeClass('bg-trudeau bg-harper bg-may');
+						break;
+				//May
+				case 3: 
+						bg.addClass('bg-may');
+						bg.removeClass('bg-trudeau bg-mulcair bg-harper');
+						break;
+			}
+
 			//if the Leader hasn't already been queried
 			if(app.quotes[id] === null){
-				// console.log("making a query for: " + app.leaders[id]);
+				console.log("making a query for: " + app.leaders[id]);
 				//query the leader
 				app.query(app.leaders[id],id);
 			}
 			else {
-				// console.log("retrieving cache for: " + app.leaders[id]);
+				console.log("retrieving cache for: " + app.leaders[id]);
 				app.nextQuote();
 				//recall the cache
 			}
 
 		});//on click
 
+	 },//buildNav
+
+
+	 init: function() {
+
+	 	//hide quote box and footer
+	 	
+		$('.quote-box').hide();
+		$('footer').hide();
+
+		//default english text, set button click to french
+		$('button#bilingual').text("En français");
+
+		//clicking the Next Button
 		$('button#next-quote').on('click', function(e){
 			e.preventDefault();
 			app.nextQuote();
 		});
 
+		//clicking Bilingual Button
 		$('button#bilingual').on('click', function(e){
 			e.preventDefault();
 			app.bilingual();
 		});
-	 }//buildNav
+
+		//setup iterative Nav	
+		window.setInterval(app.buildNav, 1500);
+		//window.setTimeout(app.buildNav, 1500);
+
+	 }//init
 
 }//ap
 
 
-  //Create Interval to loop through Nav of Party Leaders 
-  
-
 $(document).ready(function(){
-	$('button#bilingual').text("En français");
-	$('.quote-box').hide();
-	$('footer').hide();
-	window.setInterval(app.buildNav, 1500);
-	//window.setTimeout(app.buildNav, 1500);
-	
+
+	app.init();
 });
 
 
