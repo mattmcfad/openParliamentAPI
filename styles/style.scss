@@ -320,7 +320,17 @@ button {
 
 
 
-
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+  p, a {
+    color: white;
+    font: 10px 'helvetica' ;
+    
+  }
+}
 
 
 

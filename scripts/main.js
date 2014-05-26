@@ -37,7 +37,7 @@ var app = {
 	//@param id - represents which political leader
 	query: function(politician,id) {
 		$('.quote-box').show();
-		console.log("Ajax query for speeches mentioning: " + politician);
+		// console.log("Ajax query for speeches mentioning: " + politician);
 		$.ajax({
 			url: app.buildSearch(politician),
 			type: 'GET',
@@ -62,7 +62,7 @@ var app = {
 	//@param - mentioned politicial Leader 
 	buildSearch: function(politician){
 		var url = app.main_url + '/speeches/?mentioned_politician='+politician+'&limit='+app.search_limit+'&format=json';
-		console.log("Building search URL for " + politician + " :" +url);
+		// console.log("Building search URL for " + politician + " :" +url);
 		return url;
 	},
 
@@ -70,15 +70,16 @@ var app = {
 	//Get profile of the politician who mentioned the leader.
 	//@param mpURL - the url of the leaders profile
 	buildAttribution: function(mpURL){
-		console.log("Ajax query for MP profile: "+app.main_url + mpURL + '?format=json');
+		$('footer').show();
+		// console.log("Ajax query for MP profile: "+app.main_url + mpURL + '?format=json');
 		$.ajax({
 			url: app.main_url + mpURL + '?format=json',
 			type: 'GET',
 			success: function(response){
 				//console.log('setting MP key: ' +mpURL);
-				console.log("pre build attribution for " + mpURL + ' val:' + app.mps[mpURL]);
+				// console.log("pre build attribution for " + mpURL + ' val:' + app.mps[mpURL]);
 				app.mps[mpURL] = response;
-				console.log("built attribution for " + mpURL + ' val:' + app.mps[mpURL]);  
+				// console.log("built attribution for " + mpURL + ' val:' + app.mps[mpURL]);  
 
 				var speaker = $('.speaker');
 
@@ -140,7 +141,7 @@ var app = {
 
 		//set content bubble.
 		if (app.enFrancais === true){
-			console.log("french");
+			// console.log("french");
 			outputText = app.quotes[app.current_id].objects[app.quote_id].content.fr;
 		}
 		else {
@@ -159,7 +160,7 @@ var app = {
 		
 		//if the MP isn't cached
 		if (app.mps[mpURL] === undefined){
-			console.log("undefined politician: " + app.mps[mpURL] + ' name:' + mpURL);
+			// console.log("undefined politician: " + app.mps[mpURL] + ' name:' + mpURL);
 			app.buildAttribution(mpURL);
 		}
 		//get cache and set the speaker.
@@ -183,13 +184,14 @@ var app = {
 
 		}
 
+		//go to next quote
 		app.quote_id++;
 		//console.log('incrementing quote_id: ' + app.quote_id);
 
 		//reset quote_id when it reaches # of quotes
 		if (app.quote_id === app.search_limit){
 			app.quote_id = 0;
-			//console.log('reseting quote_id: ' + app.quote_id);
+			console.log('reseting quote_id: ' + app.quote_id);
 		}
 	
 	},//nextQuote
@@ -266,18 +268,18 @@ var app = {
 		$('ul li:first-child ul li a, ul li:first-child a').on('click',function(e){
 			e.preventDefault();
 
-			console.log("clicked on " + app.leaders[Number(this.id)]);
+			// console.log("clicked on " + app.leaders[Number(this.id)]);
 			//each li has an id corresponding to the leaders array
 			var id = Number(this.id);
 			app.current_id = id;
 			//if the Leader hasn't already been queried
 			if(app.quotes[id] === null){
-				console.log("making a query for: " + app.leaders[id]);
+				// console.log("making a query for: " + app.leaders[id]);
 				//query the leader
 				app.query(app.leaders[id],id);
 			}
 			else {
-				console.log("retrieving cache for: " + app.leaders[id]);
+				// console.log("retrieving cache for: " + app.leaders[id]);
 				app.nextQuote();
 				//recall the cache
 			}
@@ -304,42 +306,11 @@ var app = {
 $(document).ready(function(){
 	$('button#bilingual').text("En français");
 	$('.quote-box').hide();
+	$('footer').hide();
 	window.setInterval(app.buildNav, 1500);
 	//window.setTimeout(app.buildNav, 1500);
 	
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
