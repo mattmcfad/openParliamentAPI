@@ -89,64 +89,87 @@ var app = {
 	//Displays the content and speaker information
 	//increases iteration for the bubble.
 	nextQuote: function(){
-		var bubble  = $('.quote-text');	//speach bubble of whats being said
-		var speaker = $('.speaker');//who said it
-		
 
-		//change background based on which leader is selected.
-		var bg = $('.body-wrapper');
 
-		switch (app.current_id) {
-			//Harper
-			case 0: 
-					bg.addClass('bg-harper');
-					bg.removeClass('bg-trudeau bg-mulcair bg-may').fadeIn();
-					break;
-			//Trudeau
-			case 1: 
-					bg.addClass('bg-trudeau');
-					bg.removeClass('bg-harper bg-mulcair bg-may');
-					break;
-			//Mulcair
-			case 2: 
-					bg.addClass('bg-mulcair');
-					bg.removeClass('bg-trudeau bg-harper bg-may');
-					break;
-			//May
-			case 3: 
-					bg.addClass('bg-may');
-					bg.removeClass('bg-trudeau bg-mulcair bg-harper');
-					break;
-
-		}
-		
 		//set content bubble.
-		bubble.html(app.quotes[app.current_id].objects[app.quote_id].content.en);
-
-		//get quotes for specific leader
-		var quotes = app.quotes[app.current_id];
-		//get mp's URL of who said current quote;
-		var mpURL = quotes.objects[app.quote_id].politician_url;
+		var outputText = app.quotes[app.current_id].objects[app.quote_id].content.en
 		
-		//if the MP isn't cached
-		if (app.mps[mpURL] === undefined){
-			app.buildAttribution(mpURL);
-		}
-		//get cache and set the speaker.
-		else {		
-			speaker.find('img').attr('src',app.main_url+app.mps[mpURL].image);
-			speaker.find('#full-name').text(app.mps[mpURL].name);
-			speaker.find('#party-riding').text(app.mps[mpURL].memberships[0].party.name.en);
+
+		//test to see if output text is too long.
+		if (outputText.split(' ').length > 10000) {
+			//increment index 
+			app.uLindex++;
+
+		 	if (app.uLindex >=4) {
+		 		
+				app.uLindex=0;
+			} //if it is get next quote
+
+			app.nextQuote();
 		}
 
-		app.quote_id++;
-		//console.log('incrementing quote_id: ' + app.quote_id);
+		//proceed
+		else {
 
-		//reset quote_id when it reaches # of quotes
-		if (app.quote_id === app.search_limit){
-			app.quote_id = 0;
-			//console.log('reseting quote_id: ' + app.quote_id);
-		}
+			var bubble  = $('.quote-text');	//speach bubble of whats being said
+			var speaker = $('.speaker');//who said it
+			
+
+			//change background based on which leader is selected.
+			var bg = $('.body-wrapper');
+
+			switch (app.current_id) {
+				//Harper
+				case 0: 
+						bg.addClass('bg-harper');
+						bg.removeClass('bg-trudeau bg-mulcair bg-may').fadeIn();
+						break;
+				//Trudeau
+				case 1: 
+						bg.addClass('bg-trudeau');
+						bg.removeClass('bg-harper bg-mulcair bg-may');
+						break;
+				//Mulcair
+				case 2: 
+						bg.addClass('bg-mulcair');
+						bg.removeClass('bg-trudeau bg-harper bg-may');
+						break;
+				//May
+				case 3: 
+						bg.addClass('bg-may');
+						bg.removeClass('bg-trudeau bg-mulcair bg-harper');
+						break;
+
+			}
+			
+			//set quote to the quote-box
+			bubble.html(outputText);
+
+			//get quotes for specific leader
+			var quotes = app.quotes[app.current_id];
+			//get mp's URL of who said current quote;
+			var mpURL = quotes.objects[app.quote_id].politician_url;
+			
+			//if the MP isn't cached
+			if (app.mps[mpURL] === undefined){
+				app.buildAttribution(mpURL);
+			}
+			//get cache and set the speaker.
+			else {		
+				speaker.find('img').attr('src',app.main_url+app.mps[mpURL].image);
+				speaker.find('#full-name').text(app.mps[mpURL].name);
+				speaker.find('#party-riding').text(app.mps[mpURL].memberships[0].party.name.en);
+			}
+
+			app.quote_id++;
+			//console.log('incrementing quote_id: ' + app.quote_id);
+
+			//reset quote_id when it reaches # of quotes
+			if (app.quote_id === app.search_limit){
+				app.quote_id = 0;
+				//console.log('reseting quote_id: ' + app.quote_id);
+			}
+		}//else
 	},//nextQuote
 
 

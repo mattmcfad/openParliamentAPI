@@ -128,6 +128,11 @@ ul li ul li {
 
 ul li:hover ul li {
 	display:block;
+
+}
+
+ul li ul li a #2 {
+  color: $ndp-orange;
 }
 
 
@@ -176,7 +181,8 @@ ul.leaders li:first-child a:hover {
 
 
 .quote-text {
-
+  height: 300px;
+  overflow: scroll;
 }
 
 
@@ -197,7 +203,8 @@ button#next-quote {
 	margin: 20px auto;
 	width: 100%;
   padding: 5px 0;
-	font-size: 22px;
+	font: 16px helvetica;
+
 }
 
 

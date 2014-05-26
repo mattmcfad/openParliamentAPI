@@ -108,6 +108,10 @@ ul li:hover ul li {
   display: block;
 }
 
+ul li ul li a #2 {
+  color: #f58220;
+}
+
 ul.leaders li ul li:hover {
   color: red;
 }
@@ -150,6 +154,11 @@ ul.leaders li:first-child a:hover {
   width: 288px;
 }
 
+.quote-text {
+  height: 300px;
+  overflow: scroll;
+}
+
 /*********************************************************************************
  *******************		     next-bubble: 	   			**********************
  *********************************************************************************/
@@ -163,7 +172,7 @@ button#next-quote {
   margin: 20px auto;
   width: 100%;
   padding: 5px 0;
-  font-size: 22px;
+  font: 16px helvetica;
 }
 
 /*********************************************************************************
