@@ -38,35 +38,25 @@ a {
 }
 
 a:visited,
-a:active,
-a:hover,
-a:focus {
+a:active {
   color: white;
 }
 
-a:visited .blue,
-a:active .blue,
 a:hover .blue,
 a:focus .blue {
   color: #000a86;
 }
 
-a:visited .red,
-a:active .red,
 a:hover .red,
 a:focus .red {
   color: #a70000;
 }
 
-a:visited .orange,
-a:active .orange,
 a:hover .orange,
 a:focus .orange {
   color: #f58220;
 }
 
-a:visited .green,
-a:active .green,
 a:hover .green,
 a:focus .green {
   color: #339933;
@@ -87,7 +77,6 @@ ul {
 
 header {
   margin: 0 auto;
-  text-align: center;
   width: 89%;
   height: 175px;
 }
@@ -155,18 +144,6 @@ ul.leaders li ul li a#blue {
   color: #000a86;
 }
 
-#red {
-  color: #a70000;
-}
-
-ul.leaders li ul li a#orange {
-  color: #f58220;
-}
-
-#green {
-  color: #339933;
-}
-
 #full-name,
 #party-riding {
   font-size: 25px;
@@ -215,9 +192,10 @@ ul.leaders li ul li a#orange {
 }
 
 button#next-quote {
+  float: right;
   display: block;
   margin: 20px auto;
-  width: 100%;
+  width: 50%;
   padding: 5px 0;
   font: 16px helvetica;
 }

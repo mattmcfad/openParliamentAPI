@@ -45,9 +45,14 @@ p {
 
 a {
 	text-decoration: none;
-  &:visited,&:active,&:hover,&:focus {
+  &:visited,&:active, {
     color: $header-color;
     
+
+
+  }
+
+  &:hover,&:focus {
     .blue {
       color: $conservative-blue;
     }
@@ -60,8 +65,6 @@ a {
     .green {
       color: $greenparty-green;
     }
-
-
 
   }
 }
@@ -89,7 +92,6 @@ ul {
 
 header {
   margin: 0 auto;
-  text-align:center;
   width: 89%;
 	height: 175px;
 
@@ -168,18 +170,6 @@ ul.leaders li ul li a#blue {
   color: $conservative-blue;
 }
 
-#red {
-  color: $liberal-red;
-}
-
-ul.leaders li ul li a#orange {
-  color: $ndp-orange;
-}
-
-#green {
-  color: $greenparty-green;
-}
-
 
 #full-name,
 #party-riding {
@@ -235,9 +225,10 @@ ul.leaders li ul li a#orange {
 }
 
 button#next-quote {
-	display: block;
+	float: right;
+  display: block;
 	margin: 20px auto;
-	width: 100%;
+	width: 50%;
   padding: 5px 0;
 	font: 16px helvetica;
 
