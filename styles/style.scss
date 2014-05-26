@@ -45,8 +45,24 @@ p {
 
 a {
 	text-decoration: none;
-  &:visited {
+  &:visited,&:active,&:hover,&:focus {
     color: $header-color;
+    
+    .blue {
+      color: $conservative-blue;
+    }
+    .red {
+      color: $liberal-red;
+    }
+    .orange {
+      color: $ndp-orange;
+    }
+    .green {
+      color: $greenparty-green;
+    }
+
+
+
   }
 }
 
@@ -131,9 +147,7 @@ ul li:hover ul li {
 
 }
 
-ul li ul li a #2 {
-  color: $ndp-orange;
-}
+
 
 
 ul.leaders li ul li:hover {
@@ -142,6 +156,28 @@ ul.leaders li ul li:hover {
 
 ul.leaders li:first-child a:hover {
 	color:red;
+}
+
+
+ul.leaders li:hover ul li a#2 {
+  color: $ndp-orange;
+}
+
+
+ul.leaders li ul li a#blue {
+  color: $conservative-blue;
+}
+
+#red {
+  color: $liberal-red;
+}
+
+ul.leaders li ul li a#orange {
+  color: $ndp-orange;
+}
+
+#green {
+  color: $greenparty-green;
 }
 
 

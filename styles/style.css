@@ -37,8 +37,39 @@ a {
   text-decoration: none;
 }
 
-a:visited {
+a:visited,
+a:active,
+a:hover,
+a:focus {
   color: white;
+}
+
+a:visited .blue,
+a:active .blue,
+a:hover .blue,
+a:focus .blue {
+  color: #000a86;
+}
+
+a:visited .red,
+a:active .red,
+a:hover .red,
+a:focus .red {
+  color: #a70000;
+}
+
+a:visited .orange,
+a:active .orange,
+a:hover .orange,
+a:focus .orange {
+  color: #f58220;
+}
+
+a:visited .green,
+a:active .green,
+a:hover .green,
+a:focus .green {
+  color: #339933;
 }
 
 h4 {
@@ -108,16 +139,32 @@ ul li:hover ul li {
   display: block;
 }
 
-ul li ul li a #2 {
-  color: #f58220;
-}
-
 ul.leaders li ul li:hover {
   color: red;
 }
 
 ul.leaders li:first-child a:hover {
   color: red;
+}
+
+ul.leaders li:hover ul li a#2 {
+  color: #f58220;
+}
+
+ul.leaders li ul li a#blue {
+  color: #000a86;
+}
+
+#red {
+  color: #a70000;
+}
+
+ul.leaders li ul li a#orange {
+  color: #f58220;
+}
+
+#green {
+  color: #339933;
 }
 
 #full-name,

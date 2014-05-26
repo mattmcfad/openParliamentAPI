@@ -188,13 +188,13 @@ var app = {
 		//append the sub menu on mouseOver
 	 	if (app.uLmouseover === false){
 		 	switch (app.uLindex) {
-		 		case 0: app.uLleaders.html("<li class='first' ><a href='#' id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"</a><ul class='sub-leadersNav'><li ><a href='#' id=1>" + app.leadersNav[app.uLindex+1]+"</a></li><li ><a href='#' id=2>" + app.leadersNav[app.uLindex+2]+"</a></li><li ><a href='#' id=3>" + app.leadersNav[app.uLindex+3]+"</a></li></ul></li>");
+		 		case 0: app.uLleaders.html("<li class='first' ><a href='#' id=" + app.uLindex + '><span class="blue">'+app.leadersNav[app.uLindex]+'</span></a><ul class="sub-leadersNav"><li ><a href="#" id=1><span class="red">' + app.leadersNav[app.uLindex+1]+'</span></a></li><li ><a href="#" id=2><span class="orange">' + app.leadersNav[app.uLindex+2]+"</span></a></li><li ><a href='#' id=3><span class='green'>" + app.leadersNav[app.uLindex+3]+"</span></a></li></ul></li>");
 		 			break;
-		 		case 1: app.uLleaders.html("<li class='first' ><a href='#' id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"</a><ul class='sub-leadersNav'><li ><a href='#' id=2>" + app.leadersNav[app.uLindex+1]+"</a></li><li ><a href='#' id=3>" + app.leadersNav[app.uLindex+2]+"</a></li><li ><a href='#' id=0>" + app.leadersNav[0]+"</a></li></ul></li>");
+		 		case 1: app.uLleaders.html("<li class='first' ><a href='#' id=" + app.uLindex + "><span class='red'>"+app.leadersNav[app.uLindex]+"</span></a><ul class='sub-leadersNav'><li ><a href='#' id=2><span class='orange'>" + app.leadersNav[app.uLindex+1]+"</span></a></li><li ><a href='#' id=3><span class='green'>" + app.leadersNav[app.uLindex+2]+"</span></a></li><li ><a href='#' id=0><span class='blue'>" + app.leadersNav[0]+"</span></a></li></ul></li>");
 		 			break;
-		 		case 2: app.uLleaders.html("<li class='first' ><a href='#' id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"</a><ul class='sub-leadersNav'><li ><a href='#' id=3>" + app.leadersNav[app.uLindex+1]+"</a></li><li ><a href='#' id=0>" + app.leadersNav[0]+"</a></li><li ><a href='#' id=1>" + app.leadersNav[1]+"</a></li></ul></li>");	
+		 		case 2: app.uLleaders.html("<li class='first' ><a href='#' id=" + app.uLindex + "><span class='orange'>"+app.leadersNav[app.uLindex]+"</span></a><ul class='sub-leadersNav'><li ><a href='#' id=3><span class='green'>" + app.leadersNav[app.uLindex+1]+"</span></a></li><li ><a href='#' id=0><span class='blue'>" + app.leadersNav[0]+"</span></a></li><li ><a href='#' id=1><span class='red'>" + app.leadersNav[1]+"</span></a></li></ul></li>");	
 		 			break;
-		 		case 3: app.uLleaders.html("<li class='first' ><a href='#' id=" + app.uLindex + ">"+app.leadersNav[app.uLindex]+"</a><ul class='sub-leadersNav'><li ><a href='#' id=0>" + app.leadersNav[0]+"</a></li><li ><a href='#' id=1>" + app.leadersNav[1]+"</a></li><li ><a href='#' id=2>" + app.leadersNav[2]+"</a></li></ul></li>");	
+		 		case 3: app.uLleaders.html("<li class='first' ><a href='#' id=" + app.uLindex + "><span class='green'>"+app.leadersNav[app.uLindex]+"</span></a><ul class='sub-leadersNav'><li ><a href='#' id=0><span class='blue'>" + app.leadersNav[0]+"</span></a></li><li ><a href='#' id=1><span class='red'>" + app.leadersNav[1]+"</a></li><li ><a href='#' id=2><span class='orange'>" + app.leadersNav[2]+"</span></a></li></ul></li>");	
 		 			break;
 		 	} 
 	 	}
