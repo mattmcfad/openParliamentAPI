@@ -86,13 +86,13 @@ var app = {
 			var logo = speaker.find('img#partylogo');
 			switch (party) {
 				case 'Conservative' : logo.attr('src',
-					'images/conservative-logo.jpg'); break;
+					'images/logos/conservative-logo.jpg'); break;
 				case 'Liberal' : logo.attr('src',
-					'images/liberal-logo.jpg');;break;
+					'images/logos/liberal-logo.jpg');break;
 				case 'NDP' : logo.attr('src',
-					'images/ndp-logo.jpg');;break;
+					'images/logos/ndp-logo.jpg');break;
 				case 'Green' : logo.attr('src',
-					'images/green-logo.jpg');;break;
+					'images/logos/green-logo.jpg');break;
 			}
 			// 
 
@@ -165,13 +165,13 @@ var app = {
 			var logo = speaker.find('img#partylogo');
 			switch (party) {
 				case 'Conservative' : logo.attr('src',
-					'images/conservative-logo.jpg'); break;
+					'images/logos/conservative-logo.jpg'); break;
 				case 'Liberal' : logo.attr('src',
-					'images/liberal-logo.jpg');;break;
+					'images/logos/liberal-logo.jpg');;break;
 				case 'NDP' : logo.attr('src',
-					'images/ndp-logo.jpg');;break;
+					'images/logos/ndp-logo.jpg');;break;
 				case 'Green' : logo.attr('src',
-					'images/green-logo.jpg');;break;
+					'images/logos/green-logo.jpg');;break;
 			}
 			// 
 

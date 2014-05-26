@@ -224,6 +224,7 @@ button#next-quote {
   background-position: right center;
   -webkit-background-size: cover;
   background-size: cover;
+  min-height: 1000px;
 }
 
 .bg-harper,
@@ -234,27 +235,23 @@ button#next-quote {
 }
 
 .bg-harper {
-  background: url(../images/harper-bg.jpg) no-repeat fixed;
+  background: url(../images/backgrounds/harper-bg-scaled.jpg) no-repeat fixed;
 }
 
 .bg-trudeau {
-  background: url(../images/trudeau-bg.jpg) no-repeat fixed;
+  background: url(../images/backgrounds/trudeau-bg-scaled.jpg) no-repeat fixed;
   -webkit-background-size: cover;
   background-size: cover;
 }
 
 .bg-mulcair {
-  background: url(../images/mulcair-bg.jpg) no-repeat fixed;
+  background: url(../images/backgrounds/mulcair-bg-scaled.jpg) no-repeat fixed;
   -webkit-background-size: cover;
   background-size: cover;
 }
 
 .bg-may {
-  background: url(../images/may-bg.jpg) no-repeat fixed;
+  background: url(../images/backgrounds/may-bg-scaled.jpg) no-repeat fixed;
   -webkit-background-size: cover;
   background-size: cover;
 }
-
-/*********************************************************************************
- *******************				Bubble: 	   			**********************
- *********************************************************************************/
