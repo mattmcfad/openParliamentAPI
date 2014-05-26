@@ -43,8 +43,16 @@ p {
 	font-family: 'Open Sans', sans-serif;
 }
 
+header a {
+
+    color: $header-color;
+}
+
 a {
 	text-decoration: none;
+
+  
+
   &:visited,&:active, {
     color: $header-color;
     

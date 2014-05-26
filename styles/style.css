@@ -33,6 +33,10 @@ p {
   font-family: 'Open Sans', sans-serif;
 }
 
+header a {
+  color: white;
+}
+
 a {
   text-decoration: none;
 }
