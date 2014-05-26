@@ -8,6 +8,8 @@ var app = {
 	//test if leaders drop down is being mouse overed
 	uLmouseover: false,
 
+	enFrancais: false,
+
 
 	//whats being displayed to ul List
 	leadersNav : ["Stephen Harper", "Justin Trudeau", "Thomas Mulcair", "Elizabeth May"],
@@ -134,8 +136,16 @@ var app = {
 		var bubble  = $('.quote-text');	//speach bubble of whats being said
 		var speaker = $('.speaker');//who said it
 		
+		var outputText = '';
+
 		//set content bubble.
-		var outputText = app.quotes[app.current_id].objects[app.quote_id].content.en
+		if (app.enFrancais === true){
+			console.log("french");
+			outputText = app.quotes[app.current_id].objects[app.quote_id].content.fr;
+		}
+		else {
+		outputText = app.quotes[app.current_id].objects[app.quote_id].content.en;
+		}
 		//set quote to the quote-box
 		//replace href so points to api's site
 		var replaceLink = 'href=\"';
@@ -183,6 +193,38 @@ var app = {
 		}
 	
 	},//nextQuote
+
+
+
+	//Toggle Language
+	bilingual: function() {
+
+
+		var bubble = $('.quote-text');
+
+		//get content bubble.
+		var outputText = app.quotes[app.current_id].objects[app.quote_id].content;
+
+		//set quote to the quote-box
+		//replace href so points to api's site
+		var replaceLink = 'href=\"';
+		var re = new RegExp(replaceLink, 'g');
+
+		if (app.enFrancais === false){
+			//Switching text to French
+			app.enFrancais = true;
+			bubble.html(outputText.fr.replace(re,'href="http://api.openparliament.ca'));
+			$('button#bilingual').text("English")
+		} else {
+			//Switching text to English
+			app.enFrancais = false
+			bubble.html(outputText.en.replace(re,'href="http://api.openparliament.ca'));
+			$('button#bilingual').text("En français");
+		}
+
+	},
+
+
 
 
 	//run the rotating Nav
@@ -246,6 +288,11 @@ var app = {
 			e.preventDefault();
 			app.nextQuote();
 		});
+
+		$('button#bilingual').on('click', function(e){
+			e.preventDefault();
+			app.bilingual();
+		});
 	 }//buildNav
 
 }//ap
@@ -255,7 +302,7 @@ var app = {
   
 
 $(document).ready(function(){
-
+	$('button#bilingual').text("En français");
 	$('.quote-box').hide();
 	window.setInterval(app.buildNav, 1500);
 	//window.setTimeout(app.buildNav, 1500);

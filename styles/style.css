@@ -206,7 +206,7 @@ ul.leaders li ul li a#blue {
   width: 100%;
 }
 
-button#next-quote {
+button {
   float: right;
   vertical-align: bottom;
   display: block;
@@ -220,11 +220,11 @@ button#next-quote {
   font: 14px 'helvetica';
 }
 
-button#next-quote:hover {
+button:hover {
   background: #F44D4D;
 }
 
-button#next-quote:focus {
+button:focus {
   outline: none;
 }
 
