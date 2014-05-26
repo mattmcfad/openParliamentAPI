@@ -161,14 +161,14 @@ ul.leaders li ul li a#blue {
 
 .quote-box {
   position: relative;
-  background-color: #d9d9d9;
-  border-top: 10px solid #b0b0b0;
+  background-color: rgba(217, 217, 217, 0.8);
+  border-top: 10px solid rgba(176, 176, 176, 0.7);
   border-radius: 5px;
   padding: 15px;
   height: 420px;
   width: 500px;
-  -webkit-box-shadow: 2px 2px 5px grey;
-  box-shadow: 2px 2px 5px grey;
+  -webkit-box-shadow: 2px 2px 5px rgba(176, 176, 176, 0.9);
+  box-shadow: 2px 2px 5px rgba(176, 176, 176, 0.9);
 }
 
 .quote-box .speaker,

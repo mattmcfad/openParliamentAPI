@@ -90,10 +90,10 @@ var app = {
 				var logo = speaker.find('img#partylogo');
 				//asign logo;
 				switch (party) {
-					case 'Conservative' : logo.attr('src','images/logos/conservative-logo.jpg'); break;
-					case 'Liberal' : logo.attr('src','images/logos/liberal-logo.jpg');break;
-					case 'NDP' : logo.attr('src','images/logos/ndp-logo.jpg');break;
-					case 'Green' : logo.attr('src','images/logos/green-logo.jpg');break;
+					case 'Conservative' : logo.attr('src','images/logos/conservative-logo.png'); break;
+					case 'Liberal' : logo.attr('src','images/logos/liberal-logo.png');break;
+					case 'NDP' : logo.attr('src','images/logos/ndp-logo.png');break;
+					case 'Green' : logo.attr('src','images/logos/green-logo.png');break;
 				} 
 
 			}//success
@@ -172,13 +172,13 @@ var app = {
 			var logo = speaker.find('img#partylogo');
 			switch (party) {
 				case 'Conservative' : logo.attr('src',
-					'images/logos/conservative-logo.jpg'); break;
+					'images/logos/conservative-logo.png'); break;
 				case 'Liberal' : logo.attr('src',
-					'images/logos/liberal-logo.jpg');;break;
+					'images/logos/liberal-logo.png');;break;
 				case 'NDP' : logo.attr('src',
-					'images/logos/ndp-logo.jpg');;break;
+					'images/logos/ndp-logo.png');;break;
 				case 'Green' : logo.attr('src',
-					'images/logos/green-logo.jpg');;break;
+					'images/logos/green-logo.png');;break;
 			}
 			// 
 
