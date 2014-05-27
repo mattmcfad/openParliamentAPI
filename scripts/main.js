@@ -27,7 +27,7 @@ var app = {
 	ajaxCalls: 0,
 
 	//Greater than 6 will cause HTTP request errors.
-	search_limit : 6,
+	search_limit : 10,
 
 	current_id : 0, //which leader
 	quote_id : 0,  //which quote
